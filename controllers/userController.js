@@ -60,10 +60,6 @@ exports.register = async (req, res, next) => {
         }
         //get id and main 
 
-        const [user] = await dbConnection.execute(
-            "SELECT * FROM `users` WHERE id IN( SELECT MAX(id) FROM `users` )"
-            [body._name, body._email, hashPass]
-        );
         
         res.render("register", {
             msg: 'You have successfully registered.'
