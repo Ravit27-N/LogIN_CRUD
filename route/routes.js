@@ -15,8 +15,7 @@ const {
 } = require("../controllers/userController");
 
 
-//for testing
-router.get("/welcome", checkAuth, homePage );
+
 
 
 router.get("/login",loginPage);

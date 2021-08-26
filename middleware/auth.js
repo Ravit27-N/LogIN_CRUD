@@ -11,8 +11,8 @@ const verifyToken = (req, res, next) => {
     const decoded = jwt.verify(token, process.env.SECRETE);
     req.user = decoded;
   } catch (err) {
-    // return res.status(401).send("Invalid Token");
-    return res.redirect("/login");
+    //for testing when we cannot loggin
+    // console.log(err);
   }
   return next();
 

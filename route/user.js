@@ -7,22 +7,22 @@ const checkAuth  = require("../middleware/auth");
 // app.use(form);
 
 
-// const ifnotlogedin=(req,res,next)=>{
-//   if(checkAuth){
-//     next()
-//   }else{
-//     res.redirect("/login");
-//   }
-// }
+const Checklogedin=(req,res,next)=>{
+  if(req.user){
+    next()
+  }else{
+    res.redirect("/login");
+  }
+}
 
 // Route
-router.get('/',checkAuth, userController.view);
-router.post('/',checkAuth , userController.find);
-router.get('/adduser',checkAuth , userController.form);
-router.post('/adduser',checkAuth , userController.create);
-router.get('/edituser/:id',checkAuth , userController.edit);
-router.post('/edituser/:id',checkAuth , userController.update);
-router.get('/viewuser/:id',checkAuth , userController.viewall);
-router.get('/:id',checkAuth ,userController.delete);
+router.get('/',checkAuth,Checklogedin, userController.view);
+router.post('/',checkAuth ,Checklogedin, userController.find);
+router.get('/adduser',checkAuth ,Checklogedin, userController.form);
+router.post('/adduser',checkAuth ,Checklogedin, userController.create);
+router.get('/edituser/:id',checkAuth ,Checklogedin, userController.edit);
+router.post('/edituser/:id',checkAuth ,Checklogedin, userController.update);
+router.get('/viewuser/:id',checkAuth ,Checklogedin, userController.viewall);
+router.get('/:id',checkAuth ,Checklogedin,userController.delete);
   
 module.exports = router;
